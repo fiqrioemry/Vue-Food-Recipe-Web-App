@@ -11,10 +11,10 @@ export default {
   <footer class="w-full bg-foreground text-secondary">
     <!-- head content -->
     <section
-      class="grid grid-cols-1 md:grid-cols-3 gap-x-10 container mx-auto py-6"
+      class="grid grid-cols-1 md:grid-cols-10 gap-x-10 container mx-auto py-6"
     >
       <!-- perferct recipe -->
-      <div class="p-2 text-center md:text-start">
+      <div class="p-2 text-center md:text-start col-span-3">
         <h4>FLA<span class="text-accent">VORIZ</span></h4>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae
@@ -22,8 +22,10 @@ export default {
           quos libero dicta sint hic voluptas quas.
         </p>
       </div>
-      <div></div>
-      <NewsLetter />
+      <div class="col-span-4"></div>
+      <div class="col-span-3">
+        <NewsLetter />
+      </div>
     </section>
     <!-- bottom content -->
     <section
