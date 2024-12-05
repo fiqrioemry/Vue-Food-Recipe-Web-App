@@ -4,6 +4,7 @@ import Recipe from "@/views/Recipe.vue";
 import Details from "@/views/Details.vue";
 import MainLayout from "@/components/layout/MainLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import Blog from "@/views/Blog.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
         path: "/recipe",
         name: "Recipe",
         component: Recipe,
+      },
+      {
+        path: "/blog",
+        name: "Blog",
+        component: Blog,
       },
       {
         path: "/recipe/details/:id",

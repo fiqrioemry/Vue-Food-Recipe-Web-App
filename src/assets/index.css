@@ -13,7 +13,7 @@ body {
     --button: #974e44;
     --button-disabled: #a5a5a5;
     --primary: #000000;
-    --secondary: #a5a5a5;
+    --secondary: #878787;
     --accent: #b55d51;
     --accent-muted: #fff0ed;
     --destructive: 0 62.8% 30.6%;
@@ -45,19 +45,19 @@ body {
     @apply bg-background text-primary;
   }
   h1 {
-    @apply text-[56px] font-bold tracking-[1.5px] leading-loose;
+    @apply text-[56px] text-primary font-bold tracking-[1.5px] leading-loose;
   }
   h2 {
-    @apply text-[48px] font-medium tracking-[1.5px] leading-loose;
+    @apply text-[48px] text-primary font-medium tracking-[1.5px] leading-loose;
   }
   h3 {
-    @apply text-[40px] font-medium tracking-[1.5px] leading-loose;
+    @apply text-[40px] text-primary font-medium tracking-[1.5px] leading-loose;
   }
   h4 {
-    @apply text-[32px] font-medium tracking-[1.5px] leading-loose;
+    @apply text-[32px] text-primary font-medium tracking-[1.5px] leading-loose;
   }
   h5 {
-    @apply text-[24px] font-medium tracking-[1.5px] leading-loose;
+    @apply text-[24px] text-primary font-medium tracking-[1.5px] leading-loose;
   }
   h5 {
     @apply text-[20px] font-medium tracking-[1.5px] leading-loose;

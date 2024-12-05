@@ -11,12 +11,11 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
       screens: {
         sm: "467px",
         md: "760px",
         lg: "1024px",
-        xl: "1248px",
+        xl: "1200px",
       },
     },
     extend: {
