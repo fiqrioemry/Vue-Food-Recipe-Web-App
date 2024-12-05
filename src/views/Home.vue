@@ -18,17 +18,24 @@ export default {
   },
   methods: {
     async fetchProducts() {
+      const url =
+        "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/mealplanner/dsky/week/2020-06-01?hash=4b5v4398573406";
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "9a460ca22bmsh2113c37eac9f3cap1fe768jsn47902cddb841",
+          "x-rapidapi-host":
+            "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        },
+      };
       this.loading = true;
       try {
-        const response = await fetch(
-          `https://dummyjson.com/products?limit=${this.limit}`
-        );
-        const data = await response.json();
-        this.products = data.products;
+        const response = await fetch(url, options);
+        const result = await response.text();
+        console.log(result);
       } catch (error) {
-        console.log("Failed to fetch products:", error);
-      } finally {
-        this.loading = false;
+        console.error(error);
       }
     },
 

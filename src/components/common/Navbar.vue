@@ -1,5 +1,5 @@
 <template>
-  <header class="py-6 px-6 bg-background">
+  <header class="py-6 bg-background">
     <div class="flex items-center justify-between container mx-auto">
       <div>
         <h1 class="text-2xl font-bold">
