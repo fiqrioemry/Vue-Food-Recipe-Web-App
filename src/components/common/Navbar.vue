@@ -10,15 +10,18 @@
             <router-link
               :to="link.path"
               :key="link.path"
-              exact-active-class="text-accent font-bold"
+              active-class="text-accent font-bold"
               >{{ link.title }}</router-link
             >
           </li>
         </ul>
       </nav>
-      <div class="space-x-2">
-        <Button variant="secondary">Login</Button>
-        <Button>Signup</Button>
+
+      <div class="hidden md:flex space-x-2">
+        <Button variant="secondary"
+          ><router-link to="/signin">Login</router-link></Button
+        >
+        <Button><router-link to="/signup">Signup</router-link></Button>
       </div>
     </div>
   </header>
@@ -27,9 +30,12 @@
 <script>
 import { Button } from "@/components/ui/button";
 import { navLinks } from "../../config/index.js";
+import { MenuIcon } from "@vue-hero-icons/outline";
+
 export default {
   components: {
     Button,
+    MenuIcon,
   },
   data() {
     return {
