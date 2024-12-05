@@ -2,27 +2,39 @@
   <header class="py-6 bg-background">
     <div class="flex items-center justify-between container mx-auto">
       <div>
-        <h1 class="text-2xl font-bold">
-          FLA<span class="text-yellow-500">VORIZ</span>
-        </h1>
+        <h5>FLA<span class="text-accent">VORIZ</span></h5>
       </div>
       <nav>
-        <ul class="flex justify-between gap-x-6">
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/recipe">Recipe</router-link></li>
-          <li><router-link to="/about">About</router-link></li>
+        <ul class="flex justify-between gap-x-6 font-medium">
+          <li v-for="link in links" class="hover:text-accent">
+            <router-link
+              :to="link.path"
+              :key="link.path"
+              exact-active-class="text-accent font-bold"
+              >{{ link.title }}</router-link
+            >
+          </li>
         </ul>
       </nav>
-      <Button>Login</Button>
+      <div class="space-x-2">
+        <Button variant="secondary">Login</Button>
+        <Button>Signup</Button>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 import { Button } from "@/components/ui/button";
+import { navLinks } from "../../config/index.js";
 export default {
   components: {
     Button,
+  },
+  data() {
+    return {
+      links: navLinks,
+    };
   },
 };
 </script>
