@@ -1,19 +1,9 @@
-<template>
-  <button
-    :class="[
-      'py-2 px-4 rounded-md w-full',
-      isLoading ? 'bg-gray-400 cursor-not-allowed opacity-50' : 'bg-gray-500',
-    ]"
-    :disabled="isLoading"
-    @click="handleClick"
-  >
-    <span v-if="isLoading">Loading...</span>
-    <span v-else>{{ text }}</span>
-  </button>
-</template>
-
 <script>
+import { Button } from "@/components/ui/button";
 export default {
+  components: {
+    Button,
+  },
   props: {
     text: {
       type: String,
@@ -37,3 +27,15 @@ export default {
   },
 };
 </script>
+
+<template>
+  <Button
+    :variant="desctructive"
+    :size="md"
+    :disabled="isLoading"
+    @click="handleClick"
+  >
+    <span v-if="isLoading">Loading...</span>
+    <span v-else>{{ text }}</span>
+  </Button>
+</template>

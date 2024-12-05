@@ -1,23 +1,5 @@
 <template>
-  <div class="bg-muted">
-    <Header />
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
-<script>
-import Header from "./components/Header.vue";
-
-export default {
-  components: {
-    Header,
-  },
-};
-</script>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-</style>
+<script setup></script>

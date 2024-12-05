@@ -1,24 +1,3 @@
-<template>
-  <main class="container mx-auto">
-    <div class="h-screen py-12">
-      <div class="py-4 flex items-center justify-start">
-        <h1>Product Lists</h1>
-      </div>
-
-      <!-- Render skeleton when loading = true -->
-      <ProductCardSkelenton v-if="loading" />
-
-      <!-- Render product card when loading = false -->
-      <ProductCard v-if="!loading" :products="products" :loading="loading" />
-
-      <!-- Button to fetch more products -->
-      <div class="py-4 text-center">
-        <BaseButton v-if="!loading" text="Load More" @click="loadMore" />
-      </div>
-    </div>
-  </main>
-</template>
-
 <script>
 import BaseButton from "../components/BaseButton.vue";
 import ProductCardSkelenton from "../components/ProductCardSkeleton.vue";
@@ -63,3 +42,25 @@ export default {
   },
 };
 </script>
+
+<!-- render element -->
+<template>
+  <main class="container mx-auto">
+    <div class="h-screen py-12">
+      <div class="py-4 flex items-center justify-start">
+        <h1>Product Lists</h1>
+      </div>
+
+      <!-- Render skeleton when loading = true -->
+      <ProductCardSkelenton v-if="loading" />
+
+      <!-- Render product card when loading = false -->
+      <ProductCard v-if="!loading" :products="products" :loading="loading" />
+
+      <!-- Button to fetch more products -->
+      <div class="py-4 text-center">
+        <BaseButton v-if="!loading" text="Load More" @click="loadMore" />
+      </div>
+    </div>
+  </main>
+</template>
