@@ -16,27 +16,27 @@ export const recipeDetail = [
   {
     icon: "fa-solid fa-globe",
     type: "cuisine",
-    name: "mexican food",
+    name: "cuisine",
   },
   {
     icon: "fa-solid fa-user",
     type: "servings",
-    name: "4 persons",
+    name: "servings",
   },
   {
     icon: "fa-solid fa-clock",
-    type: "prep time",
-    name: "15 minutes",
+    type: "prepTimeMinutes",
+    name: "prep time",
   },
   {
     icon: "fa-solid fa-bowl-food",
-    type: "cook time",
-    name: "10 minutes",
+    type: "cookTimeMinutes",
+    name: "cook time",
   },
   {
     icon: "fa-solid fa-star",
     type: "difficulty",
-    name: "intermediate",
+    name: "difficulty",
   },
 ];
 
@@ -55,7 +55,7 @@ export const nutrisionFact = [
   { title: "Sugars", value: "24g" },
 ];
 
-const recipes = [
+export const recipes = [
   {
     id: 1,
     name: "Classic Margherita Pizza",
