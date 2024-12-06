@@ -42,7 +42,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-primary;
+    @apply bg-background text-primary text-sm md:text-[16px] leading-[1.5rem];
   }
   h1 {
     @apply text-[56px] text-primary font-bold tracking-[1.5px];
@@ -61,5 +61,13 @@ body {
   }
   h5 {
     @apply text-[20px] font-medium tracking-[1.5px];
+  }
+
+  .section__wrapper {
+    @apply py-6 md:py-8 px-4 md:px-0 space-y-8 container mx-auto;
+  }
+
+  .header__wrapper {
+    @apply flex items-center justify-between container mx-auto px-4 md:px-0;
   }
 }

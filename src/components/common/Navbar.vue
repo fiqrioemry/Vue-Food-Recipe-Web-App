@@ -1,6 +1,6 @@
 <template>
   <header class="py-6 bg-background">
-    <div class="flex items-center justify-between container mx-auto">
+    <div class="header__wrapper">
       <div>
         <h5>FLA<span class="text-accent">VORIZ</span></h5>
       </div>
@@ -9,9 +9,13 @@
       </nav>
       <div class="flex md:hidden"><NavMenu /></div>
       <div class="hidden md:flex space-x-2">
+        <div>
+          <font-awesome-icon icon="fa-solid fa-house" />
+        </div>
         <Button variant="secondary"
           ><router-link to="/signin">Login</router-link></Button
         >
+
         <Button><router-link to="/signup">Signup</router-link></Button>
       </div>
     </div>
