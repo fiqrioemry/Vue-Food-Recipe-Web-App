@@ -1,12 +1,38 @@
 <script>
-export default {};
-</script>
-<style lang=""></style>
+import { Button } from "../ui/button";
 
-<template lang="">
-  <section class="h-screen">
-    <div class="h-screen flex items-center justify-center">
-      <h1 class="text-4xl text-accent">HERO SECTION</h1>
+export default {
+  components: {
+    Button,
+  },
+};
+</script>
+
+<template>
+  <section class="section__wrapper mb-12 md:mb-0">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="pt-[50px] md:pt-[100px] pr-0 md:pr-6 space-y-6">
+        <h1 class="leading-[4rem]">
+          Your Daily Dish A <span class="text-accent">Food</span> Journey
+        </h1>
+        <p class="text-secondary">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
+          dicta necessitatibus atque eum, ducimus amet culpa nihil distinctio,
+          porro cum adipisci quam sequi quia.
+        </p>
+        <Button size="lg">Explore Recipe</Button>
+      </div>
+      <div class="hidden md:flex flex-col">
+        <div class="py-6 space-y-6 pt-[75px]">
+          <div class="flex items-center justify-center">
+            <img
+              class="w-[400px] h-[400px]"
+              src="@/assets/hero_image_food.png"
+              alt="hero_image"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>

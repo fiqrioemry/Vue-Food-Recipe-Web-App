@@ -46,7 +46,7 @@ export default {
         <!-- 1. recipe right side -->
         <div class="recipe__right__side py-6">
           <!-- recipe information summary-->
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap space-y-2">
             <div
               v-for="(item, index) in infoSummary"
               :key="index"
