@@ -1,16 +1,16 @@
 <template>
   <section v-for="blog in data" class="section__wrapper">
-    <!-- page navigation-->
+    <!-- Page Navigation -->
     <div>home / blog / {{ blog.title }}</div>
 
-    <!-- blog head -->
+    <!-- Blog Header -->
     <div class="space-y-4 py-6 border-b">
-      <!-- Blog title -->
+      <!-- Blog Title -->
       <div class="text-3xl md:text-4xl font-semibold">
         {{ blog.title }}
       </div>
 
-      <!-- author & date -->
+      <!-- Author & Date -->
       <div>
         <div class="flex items-center">
           <div
@@ -25,19 +25,21 @@
       </div>
     </div>
 
-    <!-- blog body -->
+    <!-- Blog Body -->
     <div class="grid grid-cols-1 md:grid-cols-5 gap-x-6">
-      <!-- main content -->
+      <!-- Main Content -->
       <div class="col-span-1 md:col-span-3 space-y-4">
         <article class="space-y-4">
-          <!-- blog image -->
+          <!-- Blog Image -->
           <div class="image__wrapper h-[400px]">
             <img class="w-full" :src="blog.image" alt="blog_thumbnail" />
           </div>
-          <!-- blog excerpt -->
+
+          <!-- Blog Excerpt -->
           <p class="font-medium">{{ blog.excerpt }}</p>
+
+          <!-- Blog Content -->
           <div class="space-y-4">
-            <!-- blog paragraph -->
             <p
               v-for="(text, index) in blog.content"
               :key="index"
@@ -46,7 +48,8 @@
               {{ text }}
             </p>
           </div>
-          <!-- blog tags -->
+
+          <!-- Blog Tags -->
           <div class="flex items-center gap-x-2">
             <h6>Tags :</h6>
             <div
@@ -59,22 +62,28 @@
           </div>
         </article>
 
-        <!-- another related blog -->
-        <div class="grid grid-cols-2 gap-4">
-          <div
-            v-for="(relatedBlog, index) in relatedBlogs"
-            :key="index"
-            class="related-blog"
-          >
-            <div class="image__wrapper">
-              <img :src="relatedBlog.image" alt="another_blog" />
-            </div>
-            <h6 class="font-bold">{{ relatedBlog.title }}</h6>
+        <!-- Related Blogs -->
+        <h5>Related Blog</h5>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div v-for="(relatedBlog, index) in relatedBlogs" :key="index">
+            <router-link
+              :to="{ name: 'BlogDetails', params: { id: relatedBlog.id } }"
+              :key="relatedBlog.id"
+            >
+              <div class="image__wrapper">
+                <img
+                  class="w-full h-[225px] image__animate"
+                  :src="relatedBlog.image"
+                  alt="related_blog"
+                />
+              </div>
+              <h6 class="font-bold">{{ relatedBlog.title }}</h6>
+            </router-link>
           </div>
         </div>
       </div>
 
-      <!-- aside content -->
+      <!-- Aside Content -->
       <aside></aside>
     </div>
   </section>
@@ -98,20 +107,37 @@ export default {
   },
   methods: {
     fetchBlogById(id) {
-      setTimeout(() => {
-        const result = this.articles.find((item) => item.id === parseInt(id));
-        this.data = result ? [result] : [];
-        this.relatedBlogs = this.fetchRelatedBlogs(parseInt(id));
-        this.loading = false;
-      }, 500);
+      const currentBlog = this.articles.find(
+        (item) => item.id === parseInt(id)
+      );
+      if (currentBlog) {
+        this.data = [currentBlog];
+        this.relatedBlogs = this.getRelatedBlogs(parseInt(id));
+      }
+      this.loading = false;
     },
-    fetchRelatedBlogs(currentBlogId) {
-      return this.articles.filter((article) => article.id !== currentBlogId);
+    getRelatedBlogs(currentBlogId) {
+      const currentIndex = this.articles.findIndex(
+        (article) => article.id === currentBlogId
+      );
+
+      const relatedBlogs = [];
+      for (let i = 1; i <= 2; i++) {
+        const nextIndex = (currentIndex + i) % this.articles.length;
+        relatedBlogs.push(this.articles[nextIndex]);
+      }
+
+      return relatedBlogs;
     },
   },
-
-  mounted() {
-    this.fetchBlogById(this.$route.params.id);
+  watch: {
+    "$route.params.id": {
+      immediate: true,
+      handler(newId) {
+        this.loading = true;
+        this.fetchBlogById(newId);
+      },
+    },
   },
 };
 </script>
