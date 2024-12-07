@@ -34,7 +34,13 @@
         </div>
         <p class="font-medium">{{ blog.excerpt }}</p>
         <div class="space-y-4">
-          <p>{{ blog.content }}</p>
+          <p
+            v-for="(text, index) in blog.content"
+            :key="index"
+            class="text-justify"
+          >
+            {{ text }}
+          </p>
         </div>
         <div class="flex items-center gap-x-2">
           <h6>Tags :</h6>
@@ -61,7 +67,6 @@ import { blogInfoSummary } from "@/config";
 export default {
   name: "BlogDetails",
   props: ["id"],
-
   data() {
     return { blogInfoSummary, data: [], articles, loading: true };
   },
