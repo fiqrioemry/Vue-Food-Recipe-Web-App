@@ -57,14 +57,20 @@
           </div>
         </div>
       </div>
+
+      <div>
+        <BlogPagination />
+      </div>
     </div>
   </section>
 </template>
 <script>
 import { Button } from "@/components/ui/button";
+import BlogPagination from "@/components/blog/BlogPagination.vue";
 export default {
   components: {
     Button,
+    BlogPagination,
   },
 };
 </script>

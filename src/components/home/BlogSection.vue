@@ -1,7 +1,24 @@
 <script>
-export default {};
+import articles from "@/config/blog.json";
+
+export default {
+  data() {
+    return {
+      articles,
+      filteredArticles: [],
+      loading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.filteredArticles = this.articles.filter((article) =>
+        [1, 2].includes(article.id)
+      );
+      this.loading = false;
+    }, 1500); //
+  },
+};
 </script>
-<style lang=""></style>
 
 <template>
   <section class="section__wrapper">
@@ -14,7 +31,19 @@ export default {};
 
     <div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-        <article v-for="i in 2" class="rounded-lg shadow-lg">
+        <div
+          v-if="loading"
+          v-for="i in 2"
+          class="w-full h-[400px] bg-slate-200 rounded-md animate-pulse flex items-center justify-center"
+        >
+          LOADING ARTICLES ....
+        </div>
+
+        <article
+          v-else
+          v-for="article in filteredArticles"
+          class="rounded-lg shadow-lg"
+        >
           <div class="image__wrapper">
             <img
               class="rounded-t-md w-full"
@@ -25,12 +54,10 @@ export default {};
 
           <div class="px-6 py-4">
             <h5 class="text-center">
-              Unlocking the benefits of intermittent fasting
+              {{ article.title }}
             </h5>
             <p class="text-secondary text-justify">
-              Creamy Rajun Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit. Ipsum itaque perspiciatis officiis reprehenderit voluptas!
-              Quis sunt iusto nulla debitis ipsam.
+              {{ article.excerpt }}
             </p>
           </div>
         </article>
