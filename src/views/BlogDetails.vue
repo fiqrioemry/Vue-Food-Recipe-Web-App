@@ -1,13 +1,13 @@
 <template>
-  <section v-if="blog.length" class="section__wrapper">
+  <section v-for="blog in data" class="section__wrapper">
     <!-- page navigation-->
-    <div>home / blog / {{ blog[0].title }}</div>
+    <div>home / blog / {{ blog.title }}</div>
 
     <!-- blog head -->
     <div class="space-y-4 py-6 border-b">
       <!-- Blog title -->
       <div class="text-3xl md:text-4xl font-semibold">
-        {{ blog[0].title }}
+        {{ blog.title }}
       </div>
 
       <!-- Blog Author & date -->
@@ -19,7 +19,7 @@
             class="flex items-center w-1/2 md:w-1/4 gap-x-2 text-sm"
           >
             <font-awesome-icon class="text-accent" :icon="item.icon" />
-            <span>{{ blog[0][item.name] }}</span>
+            <span>{{ blog[item.name] }}</span>
           </div>
         </div>
       </div>
@@ -30,18 +30,16 @@
       <!-- main content -->
       <article class="col-span-1 md:col-span-3 space-y-4">
         <div class="image__wrapper h-[400px]">
-          <img class="w-full" :src="blog[0].image" alt="blog_thumbnail" />
+          <img class="w-full" :src="blog.image" alt="blog_thumbnail" />
         </div>
-        <p class="font-medium">{{ blog[0].excerpt }}</p>
+        <p class="font-medium">{{ blog.excerpt }}</p>
         <div class="space-y-4">
-          <p v-for="(paragraph, index) in formattedContent" :key="index">
-            {{ paragraph }}
-          </p>
+          <p>{{ blog.content }}</p>
         </div>
         <div class="flex items-center gap-x-2">
           <h6>Tags :</h6>
           <div
-            v-for="(tag, index) in blog[0].tags"
+            v-for="(tag, index) in blog.tags"
             :key="index"
             class="py-1 px-2 border rounded-md text-sm"
           >
@@ -65,23 +63,15 @@ export default {
   props: ["id"],
 
   data() {
-    return { blogInfoSummary, blog: [], articles, loading: true };
+    return { blogInfoSummary, data: [], articles, loading: true };
   },
   methods: {
     fetchBlogById(id) {
       setTimeout(() => {
-        const data = this.articles.filter((item) => item.id === parseInt(id));
-        this.blog = data;
+        const result = this.articles.filter((item) => item.id === parseInt(id));
+        this.data = result;
         this.loading = false;
       }, 500);
-    },
-  },
-  computed: {
-    formattedContent() {
-      if (this.blog.length === 0) return [];
-      return this.blog[0].content
-        .split("\n")
-        .filter((paragraph) => paragraph.trim() !== "");
     },
   },
   mounted() {
