@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <Sheet>
     <SheetTrigger><Button>Open</Button></SheetTrigger>
     <SheetContent>
@@ -20,6 +20,7 @@
     </SheetContent>
   </Sheet>
 </template>
+
 <script>
 import {
   Sheet,

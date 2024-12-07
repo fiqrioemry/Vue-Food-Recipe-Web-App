@@ -1,7 +1,11 @@
 <script>
 import articles from "@/config/blog.json";
+import BlogCard from "../skeleton/BlogCard.vue";
 
 export default {
+  components: {
+    BlogCard,
+  },
   data() {
     return {
       articles,
@@ -15,7 +19,7 @@ export default {
         [1, 2].includes(article.id)
       );
       this.loading = false;
-    }, 1500); //
+    }, 500); //
   },
 };
 </script>
@@ -25,41 +29,43 @@ export default {
     <!-- section head -->
     <div class="flex items-center justify-between">
       <h4>Blog</h4>
-
-      <button class="text-accent font-semibold">View more</button>
+      <router-link to="/blog" class="text-accent font-semibold"
+        >View more</router-link
+      >
     </div>
 
     <div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-        <div
-          v-if="loading"
-          v-for="i in 2"
-          class="w-full h-[400px] bg-slate-200 rounded-md animate-pulse flex items-center justify-center"
-        >
-          LOADING ARTICLES ....
-        </div>
+        <!-- blog card loading ui -->
+        <BlogCard v-if="loading" v-for="i in 2" :key="i" />
 
+        <!-- blog card content display -->
         <article
           v-else
           v-for="article in filteredArticles"
           class="rounded-lg shadow-lg"
         >
-          <div class="image__wrapper">
-            <img
-              class="rounded-t-md w-full"
-              src="@/assets/blog.png"
-              alt="favorite"
-            />
-          </div>
+          <router-link
+            :to="{ name: 'BlogDetails', params: { id: article.id } }"
+            :key="article.id"
+          >
+            <div class="image__wrapper overflow-hidden">
+              <img
+                class="rounded-t-md w-full image__animate"
+                src="@/assets/blog.png"
+                alt="favorite"
+              />
+            </div>
 
-          <div class="px-6 py-4">
-            <h5 class="text-center">
-              {{ article.title }}
-            </h5>
-            <p class="text-secondary text-justify">
-              {{ article.excerpt }}
-            </p>
-          </div>
+            <div class="px-6 py-4">
+              <h5 class="text-center">
+                {{ article.title }}
+              </h5>
+              <p class="text-secondary text-justify">
+                {{ article.excerpt }}
+              </p>
+            </div>
+          </router-link>
         </article>
       </div>
     </div>

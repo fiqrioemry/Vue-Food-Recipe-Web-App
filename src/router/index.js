@@ -1,10 +1,11 @@
+import Blog from "@/views/Blog.vue";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Recipe from "@/views/Recipe.vue";
-import Details from "@/views/Details.vue";
+import BlogDetails from "@/views/BlogDetails.vue";
+import RecipeDetails from "@/views/RecipeDetails.vue";
 import MainLayout from "@/components/layout/MainLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import Blog from "@/views/Blog.vue";
 
 const routes = [
   {
@@ -32,9 +33,14 @@ const routes = [
         component: Blog,
       },
       {
+        path: "/blog/detail/:id",
+        name: "BlogDetails",
+        component: BlogDetails,
+      },
+      {
         path: "/recipe/details/:id",
-        name: "Details",
-        component: Details,
+        name: "RecipeDetails",
+        component: RecipeDetails,
       },
     ],
   },
@@ -43,6 +49,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: "smooth" };
+  },
 });
 
 export default router;

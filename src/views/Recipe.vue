@@ -1,37 +1,7 @@
-<script>
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import {
-  nutrisionFact,
-  infoSummary,
-  buttonActions,
-  recipeDetail,
-  recipes,
-} from "@/config";
-
-export default {
-  components: {
-    Button,
-    Input,
-  },
-  data() {
-    return {
-      nutrisionFact: nutrisionFact,
-      infoSummary: infoSummary,
-      buttonActions: buttonActions,
-      recipeDetail: recipeDetail,
-      recipes: recipes,
-    };
-  },
-};
-</script>
-
 <template>
   <section class="section__wrapper">
     <!-- content head-->
     <div>home / recipe / sate-padang-enak</div>
-
     <!-- content body -->
     <div>
       <!-- recipe title -->
@@ -239,3 +209,32 @@ export default {
     </div>
   </section>
 </template>
+
+<script>
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  nutrisionFact,
+  infoSummary,
+  buttonActions,
+  recipeDetail,
+  recipes,
+} from "@/config";
+
+export default {
+  components: {
+    Button,
+    Input,
+  },
+  data() {
+    return {
+      nutrisionFact: nutrisionFact,
+      infoSummary: infoSummary,
+      buttonActions: buttonActions,
+      recipeDetail: recipeDetail,
+      recipes: recipes,
+    };
+  },
+};
+</script>
