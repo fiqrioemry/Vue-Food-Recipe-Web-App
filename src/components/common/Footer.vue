@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <footer class="w-full bg-foreground text-secondary">
+  <footer class="w-full bg-accent-muted text-secondary">
     <section class="section__wrapper">
       <!-- head content -->
       <div class="grid grid-cols-1 md:grid-cols-10 gap-x-10">

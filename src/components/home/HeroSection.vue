@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <section class="section__wrapper mb-12 md:mb-0">
+  <section class="section__wrapper">
     <div class="grid grid-cols-1 md:grid-cols-2">
       <div class="pt-[50px] md:pt-[100px] pr-0 md:pr-6 space-y-6">
         <h1 class="leading-[4rem]">

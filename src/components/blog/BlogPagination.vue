@@ -4,17 +4,13 @@
       v-for="page in totalPages"
       :key="page"
       :value="page"
-      @click="onHandleChange(page)"
-      <!--
-      Memanggil
-      fungsi
-      saat
-      tombol
-      diklik
-      --
+      @click="onPageChanged(page)"
+      :class="
+        page === currentPage
+          ? 'bg-accent px-4 py-2 rounded-md border'
+          : 'px-4 py-2 rounded-md border'
+      "
     >
-      :class=" page === currentPage ? 'bg-accent px-4 py-2 rounded-md border' :
-      'px-4 py-2 rounded-md border' " >
       {{ page }}
     </button>
   </div>
@@ -23,7 +19,7 @@
 <script>
 export default {
   props: {
-    onHandleChange: {
+    onPageChanged: {
       type: Function,
       required: true,
     },

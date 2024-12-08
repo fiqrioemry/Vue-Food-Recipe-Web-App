@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto">
+  <main class="container mx-auto py-6">
     <!-- hero section -->
     <HeroSection />
 
