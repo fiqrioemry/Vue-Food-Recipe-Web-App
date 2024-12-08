@@ -17,7 +17,7 @@ import { navLinks } from "../../config/index.js";
 export default {
   data() {
     return {
-      links: navLinks, // Perbaikan: Gunakan koma (,) bukan titik koma (;)
+      links: navLinks,
     };
   },
 };

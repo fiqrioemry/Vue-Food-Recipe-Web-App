@@ -50,7 +50,7 @@
 
 <script>
 import articles from "@/config/blog.json";
-import BlogCard from "../skeleton/BlogCard.vue";
+import BlogCard from "../skeleton/BlogCardSkeleton.vue";
 
 export default {
   components: {
