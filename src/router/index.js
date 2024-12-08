@@ -19,21 +19,21 @@ const routes = [
       },
       {
         path: "/about",
-        name: "About",
+        name: "about",
         component: About,
       },
       {
         path: "/recipe",
-        name: "Recipe",
+        name: "recipe",
         component: Recipe,
       },
       {
         path: "/blog",
-        name: "Blog",
+        name: "blog",
         component: Blog,
       },
       {
-        path: "/blog/detail/:id",
+        path: "/blog/:slug",
         name: "BlogDetails",
         component: BlogDetails,
       },
@@ -41,6 +41,12 @@ const routes = [
         path: "/recipe/details/:id",
         name: "RecipeDetails",
         component: RecipeDetails,
+      },
+
+      {
+        path: "/:pathMatch(.*)*",
+        name: "NotFound",
+        component: () => import("@/views/NotFound.vue"),
       },
     ],
   },
@@ -55,3 +61,13 @@ const router = createRouter({
 });
 
 export default router;
+
+// scrollBehavior(to, from, savedPosition) {
+//   if (savedPosition) {
+//     return savedPosition; // Mendukung navigasi kembali (back/forward)
+//   }
+//   if (to.hash) {
+//     return { el: to.hash, behavior: "smooth" }; // Gulir ke elemen dengan id
+//   }
+//   return { top: 0, behavior: "smooth" }; // Gulir ke atas
+// },

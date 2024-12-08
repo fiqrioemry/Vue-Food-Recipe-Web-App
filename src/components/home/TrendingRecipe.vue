@@ -1,8 +1,3 @@
-<script>
-export default {};
-</script>
-<style lang=""></style>
-
 <template>
   <section class="section__wrapper">
     <!-- section head -->
@@ -49,3 +44,28 @@ export default {};
     <!-- section content -->
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      relatedRecipe: [],
+      loading: true,
+    };
+  },
+  methods: {
+    async fetchRelatedRecipe() {
+      setTimeout(async () => {
+        const response = await fetch("https://dummyjson.com/recipes");
+        const data = await response.json();
+        this.relatedRecipe = data;
+        this.loading = false;
+        console.log(this.relatedRecipe);
+      }, 500);
+    },
+  },
+  mounted() {
+    this.fetchRelatedRecipe();
+  },
+};
+</script>

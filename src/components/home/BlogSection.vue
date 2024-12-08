@@ -20,13 +20,13 @@
           class="rounded-lg shadow-lg"
         >
           <router-link
-            :to="{ name: 'BlogDetails', params: { id: article.id } }"
+            :to="{ name: 'BlogDetails', params: { slug: article.slug } }"
             :key="article.id"
           >
-            <div class="image__wrapper overflow-hidden">
+            <div class="image__wrapper rounded-t-md overflow-hidden">
               <img
-                class="rounded-t-md w-full image__animate"
-                src="@/assets/blog.png"
+                class="w-full h-[250px] image__animate"
+                :src="article.image"
                 alt="favorite"
               />
             </div>

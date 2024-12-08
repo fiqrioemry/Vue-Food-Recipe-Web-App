@@ -68,7 +68,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div v-for="(relatedBlog, index) in relatedBlogs" :key="index">
             <router-link
-              :to="{ name: 'BlogDetails', params: { id: relatedBlog.id } }"
+              :to="{ name: 'BlogDetails', params: { slug: relatedBlog.slug } }"
               :key="relatedBlog.id"
             >
               <div class="image__wrapper">
@@ -97,7 +97,7 @@ import BlogDetailsSkeleton from "@/components/skeleton/BlogDetailsSkeleton.vue";
 
 export default {
   name: "BlogDetails",
-  props: ["id"],
+  props: ["slug"],
   components: {
     BlogDetailsSkeleton,
   },
@@ -111,21 +111,19 @@ export default {
     };
   },
   methods: {
-    fetchBlogById(id) {
-      const currentBlog = this.articles.find(
-        (item) => item.id === parseInt(id)
-      );
+    fetchBlogBySlug(slug) {
+      const currentBlog = this.articles.find((item) => item.slug === slug);
       if (currentBlog) {
         this.data = [currentBlog];
-        this.relatedBlogs = this.getRelatedBlogs(parseInt(id));
+        this.relatedBlogs = this.getRelatedBlogs(slug);
       }
       setTimeout(() => {
         this.loading = false;
       }, 500);
     },
-    getRelatedBlogs(currentBlogId) {
+    getRelatedBlogs(currentBlogSlug) {
       const currentIndex = this.articles.findIndex(
-        (article) => article.id === currentBlogId
+        (article) => article.slug === currentBlogSlug
       );
 
       const relatedBlogs = [];
@@ -138,11 +136,11 @@ export default {
     },
   },
   watch: {
-    "$route.params.id": {
+    "$route.params.slug": {
       immediate: true,
-      handler(newId) {
+      handler(slug) {
         this.loading = true;
-        this.fetchBlogById(newId);
+        this.fetchBlogBySlug(slug);
       },
     },
   },
