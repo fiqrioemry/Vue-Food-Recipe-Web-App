@@ -6,6 +6,7 @@ import BlogDetails from "@/views/BlogDetails.vue";
 import RecipeDetails from "@/views/RecipeDetails.vue";
 import MainLayout from "@/components/layout/MainLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import SignIn from "@/views/SignIn.vue";
 
 const routes = [
   {
@@ -38,9 +39,15 @@ const routes = [
         component: BlogDetails,
       },
       {
-        path: "/recipe/details/:id",
+        path: "/recipe/:slug",
         name: "RecipeDetails",
         component: RecipeDetails,
+      },
+
+      {
+        path: "/signin",
+        name: "signin",
+        component: SignIn,
       },
 
       {

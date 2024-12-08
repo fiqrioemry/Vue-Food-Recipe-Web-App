@@ -146,6 +146,11 @@
                   </div>
                 </div>
               </article>
+
+              <button @click="increment" class="px-4 py-2 border">
+                increment
+              </button>
+              <div>{{ nums }}</div>
             </div>
           </div>
         </div>
@@ -213,7 +218,7 @@
 <script>
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 import {
   nutrisionFact,
   infoSummary,
@@ -221,14 +226,17 @@ import {
   recipeDetail,
   recipes,
 } from "@/config";
+import { ref } from "vue";
 
 export default {
   components: {
     Button,
     Input,
   },
+
   data() {
     return {
+      maxStock: 10,
       nutrisionFact: nutrisionFact,
       infoSummary: infoSummary,
       buttonActions: buttonActions,
