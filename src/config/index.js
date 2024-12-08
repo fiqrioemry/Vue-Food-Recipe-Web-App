@@ -149,3 +149,26 @@ export const signInInputForm = [
     placeholder: "input your password",
   },
 ];
+
+export const signUpInputForm = [
+  {
+    type: "text",
+    value: "",
+    placeholder: "input your username",
+  },
+  {
+    type: "text",
+    value: "",
+    placeholder: "input your email",
+  },
+  {
+    type: "password",
+    value: "",
+    placeholder: "input your password",
+  },
+  {
+    type: "password",
+    value: "",
+    placeholder: "input your confirmation password",
+  },
+];

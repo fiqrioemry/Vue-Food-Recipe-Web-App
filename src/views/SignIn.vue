@@ -1,34 +1,41 @@
 <template>
   <section class="h-screen flex items-center justify-center bg-foreground">
-    <Card class="w-[325px]">
-      <CardHeader class="text-center">
-        <CardTitle>Login to your account</CardTitle>
-        <CardDescription
-          >Access your favorite recipes and manage your personalized
-          cookbook.</CardDescription
-        >
-      </CardHeader>
-      <CardContent>
-        <form @submit.prevent="handleLogin" class="space-y-4">
-          <input
-            v-for="(data, index) in signInInputForm"
-            :type="data.type"
-            v-model="data.value"
-            :placeholder="data.placeholder"
-            :key="index"
-            class="py-2 px-4 w-full rounded-md border"
-          />
-          <Button
-            type="submit"
-            size="lg"
-            class="px-4 py-2 border w-full rounded-md bg-accent text-background"
-            :disabled="isButtonDisabled()"
+    <div class="space-y-2">
+      <Button> <router-link to="/">home</router-link></Button>
+      <Card class="w-[325px]">
+        <CardHeader class="text-center">
+          <CardTitle>Login to your account</CardTitle>
+          <CardDescription
+            >Access your favorite recipes and manage your personalized
+            cookbook.</CardDescription
           >
-            {{ isButtonLoading ? "Loading ..." : "Login" }}
-          </Button>
-        </form></CardContent
-      >
-    </Card>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <form @submit.prevent="handleLogin" class="space-y-4">
+            <input
+              v-for="(data, index) in signInInputForm"
+              :type="data.type"
+              v-model="data.value"
+              :placeholder="data.placeholder"
+              :key="index"
+              class="py-2 px-4 w-full rounded-md border"
+            />
+            <Button
+              type="submit"
+              size="lg"
+              class="px-4 py-2 border w-full rounded-md bg-accent text-background"
+              :disabled="isButtonDisabled()"
+            >
+              {{ isButtonLoading ? "Loading ..." : "Login" }}
+            </Button>
+          </form>
+          <div class="text-sm">
+            Dont have an account ? Sign up
+            <router-link to="/signup" class="font-medium">here</router-link>
+          </div></CardContent
+        >
+      </Card>
+    </div>
   </section>
 </template>
 
@@ -39,6 +46,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -48,6 +56,7 @@ export default {
     Button,
     Card,
     CardContent,
+    CardFooter,
     CardDescription,
     CardHeader,
     CardTitle,
