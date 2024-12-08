@@ -1,5 +1,6 @@
 <template>
-  <section v-for="blog in data" class="section__wrapper">
+  <BlogDetailsSkeleton v-if="loading" />
+  <section v-else="!loading" v-for="blog in data" class="section__wrapper">
     <!-- Page Navigation -->
     <div>home / blog / {{ blog.title }}</div>
 
@@ -92,10 +93,14 @@
 <script>
 import articles from "@/config/blog.json";
 import { blogInfoSummary } from "@/config";
+import BlogDetailsSkeleton from "@/components/skeleton/BlogDetailsSkeleton.vue";
 
 export default {
   name: "BlogDetails",
   props: ["id"],
+  components: {
+    BlogDetailsSkeleton,
+  },
   data() {
     return {
       blogInfoSummary,
@@ -114,7 +119,9 @@ export default {
         this.data = [currentBlog];
         this.relatedBlogs = this.getRelatedBlogs(parseInt(id));
       }
-      this.loading = false;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     },
     getRelatedBlogs(currentBlogId) {
       const currentIndex = this.articles.findIndex(

@@ -1,29 +1,3 @@
-<script>
-import articles from "@/config/blog.json";
-import BlogCard from "../skeleton/BlogCard.vue";
-
-export default {
-  components: {
-    BlogCard,
-  },
-  data() {
-    return {
-      articles,
-      filteredArticles: [],
-      loading: true,
-    };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.filteredArticles = this.articles.filter((article) =>
-        [1, 2].includes(article.id)
-      );
-      this.loading = false;
-    }, 500); //
-  },
-};
-</script>
-
 <template>
   <section class="section__wrapper">
     <!-- section head -->
@@ -73,3 +47,29 @@ export default {
     <!-- section content -->
   </section>
 </template>
+
+<script>
+import articles from "@/config/blog.json";
+import BlogCard from "../skeleton/BlogCard.vue";
+
+export default {
+  components: {
+    BlogCard,
+  },
+  data() {
+    return {
+      articles,
+      filteredArticles: [],
+      loading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.filteredArticles = this.articles.filter((article) =>
+        [1, 2].includes(article.id)
+      );
+      this.loading = false;
+    }, 500); //
+  },
+};
+</script>

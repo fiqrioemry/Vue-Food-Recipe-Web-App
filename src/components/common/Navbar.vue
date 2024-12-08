@@ -12,9 +12,9 @@
         <div>
           <font-awesome-icon icon="fa-solid fa-house" />
         </div>
-        <Button variant="secondary"
-          ><router-link to="/signin">Login</router-link></Button
-        >
+        <Button variant="secondary">
+          <router-link to="/signin">Login</router-link>
+        </Button>
 
         <Button><router-link to="/signup">Signup</router-link></Button>
       </div>

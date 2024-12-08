@@ -1,49 +1,40 @@
-<script setup lang="ts">
-import { Button } from "@/components/ui/button";
-
-import {
-  Pagination,
-  PaginationEllipsis,
-  PaginationFirst,
-  PaginationLast,
-  PaginationList,
-  PaginationListItem,
-  PaginationNext,
-  PaginationPrev,
-} from "@/components/ui/pagination";
-</script>
-
 <template>
-  <Pagination
-    v-slot="{ page }"
-    :total="100"
-    :sibling-count="1"
-    show-edges
-    :default-page="2"
-  >
-    <PaginationList v-slot="{ items }" class="flex items-center gap-1">
-      <PaginationFirst />
-      <PaginationPrev />
-
-      <template v-for="(item, index) in items">
-        <PaginationListItem
-          v-if="item.type === 'page'"
-          :key="index"
-          :value="item.value"
-          as-child
-        >
-          <Button
-            class="w-10 h-10 p-0"
-            :variant="item.value === page ? 'default' : 'outline'"
-          >
-            {{ item.value }}
-          </Button>
-        </PaginationListItem>
-        <PaginationEllipsis v-else :key="item.type" :index="index" />
-      </template>
-
-      <PaginationNext />
-      <PaginationLast />
-    </PaginationList>
-  </Pagination>
+  <div class="space-x-2">
+    <button
+      v-for="page in totalPages"
+      :key="page"
+      :value="page"
+      @click="onHandleChange(page)"
+      <!--
+      Memanggil
+      fungsi
+      saat
+      tombol
+      diklik
+      --
+    >
+      :class=" page === currentPage ? 'bg-accent px-4 py-2 rounded-md border' :
+      'px-4 py-2 rounded-md border' " >
+      {{ page }}
+    </button>
+  </div>
 </template>
+
+<script>
+export default {
+  props: {
+    onHandleChange: {
+      type: Function,
+      required: true,
+    },
+    totalPages: {
+      type: Number,
+      required: true,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+    },
+  },
+};
+</script>
