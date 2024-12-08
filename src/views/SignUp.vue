@@ -3,7 +3,7 @@
     <div class="p-4 w-[325px] rounded-md bg-background">
       <form @submit.prevent="handleLogin" class="space-y-4">
         <input
-          v-for="(data, index) in inputForm"
+          v-for="(data, index) in signInInputForm"
           :type="data.type"
           v-model="data.value"
           :placeholder="data.placeholder"
@@ -22,17 +22,19 @@
 </template>
 
 <script>
-import { inputForm } from "@/config";
+import { signInInputForm } from "@/config";
 
 export default {
   data() {
     return {
-      inputForm: inputForm,
+      signInInputForm: signInInputForm,
     };
   },
   methods: {
     handleLogin() {
-      console.log(this.inputForm[0].value);
+      alert(
+        `your email is : ${this.signInputForm.value} and password is : ${this.signInputForm.value}`
+      );
     },
   },
 };

@@ -137,20 +137,15 @@ export const recipes = [
   },
 ];
 
-export const formData = {
-  username: "",
-  password: "",
-};
-
-export const inputForm = [
+export const signInInputForm = [
   {
     type: "text",
-    email: "",
-    placeholder: "input your username",
+    value: "",
+    placeholder: "input your email",
   },
   {
     type: "password",
-    password: "",
+    value: "",
     placeholder: "input your password",
   },
 ];
