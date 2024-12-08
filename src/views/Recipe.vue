@@ -1,35 +1,54 @@
 <template>
-  <section class="section__wrapper">
-    <!-- content head-->
+  <main class="section__wrapper">
+    <!-- page navigation-->
     <div>home / recipe / sate-padang-enak</div>
-    <!-- content body -->
+
     <div>
       <!-- recipe title -->
       <div class="text-3xl md:text-4xl font-semibold">
         {{ recipes[0].name }}
       </div>
 
-      <!-- recipe information -->
-      <div
-        class="grid grid-cols-1 md:grid-cols-10 gap-x-4 items-center border-b"
-      >
-        <!-- 1. recipe right side -->
-        <div class="recipe__right__side py-6">
-          <!-- recipe information summary-->
-          <div class="flex flex-wrap space-y-2">
-            <div
-              v-for="(item, index) in infoSummary"
-              :key="index"
-              class="flex items-center w-1/2 md:w-1/4 gap-x-2 text-sm"
-            >
-              <font-awesome-icon class="text-accent" :icon="item.icon" />
-              <span>{{ item.value }}</span>
+      <!-- content head -->
+      <div class="grid grid-cols-1 md:grid-cols-10 items-center border-b py-2">
+        <!-- summary info -->
+        <div class="col-span-1 md:col-span-6">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
+            <div class="flex items-center gap-x-2 text-sm">
+              <font-awesome-icon class="text-accent" icon="fa-solid fa-user" />
+              <span>authorname</span>
+            </div>
+
+            <div class="flex items-center gap-x-2 text-sm">
+              <font-awesome-icon
+                class="text-accent"
+                icon="fa-solid fa-calendar"
+              />
+              <span>authorname</span>
+            </div>
+
+            <div class="flex items-center gap-x-2 text-sm">
+              <font-awesome-icon
+                class="text-accent"
+                icon="fa-solid fa-comment"
+              />
+              <span>authorname</span>
+            </div>
+
+            <div class="flex items-center gap-x-2 text-sm">
+              <font-awesome-icon
+                class="text-accent"
+                icon="fa-solid fa-bookmark"
+              />
+              <span>authorname</span>
             </div>
           </div>
         </div>
+        <!-- separate border -->
+        <div class="hidden md:flex md:col-span-1"></div>
 
-        <!-- recipe share button-->
-        <div class="recipe__left__side items-center">
+        <!-- share button-->
+        <div class="hidden md:flex md:col-span-3 space-x-4 items-center">
           <button
             v-for="(button, index) in buttonActions"
             :key="index"
@@ -40,9 +59,9 @@
         </div>
       </div>
 
-      <!-- recipe detail -->
+      <!-- content body-->
       <div class="grid grid-cols-1 md:grid-cols-10 gap-x-4">
-        <div class="recipe__right__side space-y-6 py-6">
+        <div class="col-span-1 md:col-span-6">
           <!-- recipe image -->
           <div class="image__wrapper">
             <img
@@ -212,7 +231,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </main>
 </template>
 
 <script>
@@ -226,7 +245,6 @@ import {
   recipeDetail,
   recipes,
 } from "@/config";
-import { ref } from "vue";
 
 export default {
   components: {
