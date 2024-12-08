@@ -24,7 +24,7 @@
             class="px-4 py-2 border w-full rounded-md bg-accent text-background"
             :disabled="isButtonDisabled()"
           >
-            Login
+            {{ isButtonLoading ? "Loading ..." : "Login" }}
           </Button>
         </form></CardContent
       >
@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       loading: true,
+      isButtonLoading: false,
       signInInputForm: signInInputForm,
     };
   },
@@ -66,9 +67,11 @@ export default {
       );
     },
     handleLogin() {
-      alert(
-        `your email is : ${this.signInputForm.value} and password is : ${this.signInputForm.value}`
-      );
+      this.isButtonLoading = true;
+      setTimeout(() => {
+        alert(`Feature disabled in demo `);
+        this.isButtonLoading = false;
+      }, 500);
     },
   },
 };
