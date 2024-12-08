@@ -136,3 +136,21 @@ export const recipes = [
     commentsCount: 68,
   },
 ];
+
+export const formData = {
+  username: "",
+  password: "",
+};
+
+export const inputForm = [
+  {
+    type: "text",
+    email: "",
+    placeholder: "input your username",
+  },
+  {
+    type: "password",
+    password: "",
+    placeholder: "input your password",
+  },
+];

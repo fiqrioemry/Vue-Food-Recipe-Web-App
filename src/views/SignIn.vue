@@ -1,32 +1,39 @@
 <template>
   <section class="h-screen flex items-center justify-center bg-foreground">
     <div class="p-4 w-[325px] rounded-md bg-background">
-      <form @submit="handleLogin" class="space-y-4">
+      <form @submit.prevent="handleLogin" class="space-y-4">
         <input
-          type="text"
-          v-model="username"
-          placeholder="username"
-          class="px-4 py-2 w-full rounded-md border"
+          v-for="(data, index) in inputForm"
+          :type="data.type"
+          v-model="data.value"
+          :placeholder="data.placeholder"
+          :key="index"
+          class="py-2 px-4 w-full rounded-md border"
         />
-        <input
-          type="password"
-          v-model="password"
-          placeholder="password"
-          class="px-4 py-2 w-full rounded-md border"
-        />
-
-        <button type="submit">login</button>
+        <button
+          type="submit"
+          class="px-4 py-2 border w-full rounded-md bg-accent text-background"
+        >
+          Login
+        </button>
       </form>
     </div>
   </section>
 </template>
+
 <script>
+import { inputForm } from "@/config";
+
 export default {
   data() {
     return {
-      username: "",
-      password: "",
+      inputForm: inputForm,
     };
+  },
+  methods: {
+    handleLogin() {
+      console.log(this.inputForm[0].value);
+    },
   },
 };
 </script>
