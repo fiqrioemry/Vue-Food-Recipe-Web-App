@@ -139,7 +139,7 @@
             <h4>You might also like</h4>
 
             <div v-if="loading">Loading...</div>
-            <div v-else class="grid grid-cols-3 gap-x-4 gap-y-4">
+            <div v-else="!loading" class="grid grid-cols-3 gap-x-4 gap-y-4">
               <article
                 v-for="recommend in recommendRecipes"
                 class="rounded-md shadow-lg"
@@ -219,7 +219,7 @@
           <div>
             <h5>Related Recipes</h5>
             <div v-if="loading">Loading...</div>
-            <div v-else class="grid grid-cols-2 gap-x-3 gap-y-3">
+            <div v-else="!loading" class="grid grid-cols-2 gap-x-3 gap-y-3">
               <article
                 v-for="related in relatedRecipes"
                 class="rounded-md shadow-lg"
@@ -253,7 +253,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { nutrisionFact, recipeDetail } from "@/config";
 import { slugToTitle } from "@/lib/utils";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
 export default {
@@ -262,45 +262,38 @@ export default {
     Input,
   },
   setup() {
+    const recipes = ref([]);
     const route = useRoute();
-    const slug = ref(route.params.slug);
-
-    const nutrisionFactData = nutrisionFact;
-    const recipeDetailData = recipeDetail;
+    const loading = ref(true);
     const relatedRecipes = ref([]);
     const recommendRecipes = ref([]);
-    const recipes = ref([]);
-    const loading = ref(true);
+    const slug = ref(route.params.slug);
+    const recipeDetailData = recipeDetail;
+    const nutrisionFactData = nutrisionFact;
 
     const fetchData = async (slug) => {
-      loading.value = true;
-      try {
-        const response = await fetch(
-          `https://dummyjson.com/recipes/search?q=${slug}`
-        );
-        const result = await response.json();
-        recipes.value = result.recipes;
+      const response = await fetch(
+        `https://dummyjson.com/recipes/search?q=${slug}`
+      );
+      const result = await response.json();
+      recipes.value = result.recipes;
 
-        const tags = recipes.value[0].tags[0];
-        const mealType = recipes.value[0].mealType[0];
+      const tags = recipes.value[0].tags[0];
+      const mealType = recipes.value[0].mealType[0];
 
-        const recommend = await fetch(
-          `https://dummyjson.com/recipes/meal-type/${mealType}`
-        );
-        const recommendData = await recommend.json();
-        recommendRecipes.value = recommendData.recipes.slice(0, 6);
+      const recommend = await fetch(
+        `https://dummyjson.com/recipes/meal-type/${mealType}`
+      );
+      const recommendData = await recommend.json();
+      recommendRecipes.value = recommendData.recipes.slice(0, 6);
 
-        const related = await fetch(
-          `https://dummyjson.com/recipes/tag/${tags}`
-        );
-        const relatedData = await related.json();
-        relatedRecipes.value = relatedData.recipes;
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        loading.value = false;
-      }
+      const related = await fetch(`https://dummyjson.com/recipes/tag/${tags}`);
+      const relatedData = await related.json();
+      relatedRecipes.value = relatedData.recipes;
+      loading.value = false;
+      console.log(loading.value);
     };
+    watch(() => route.params.slug, fetchData(slug.value));
 
     onMounted(() => {
       fetchData(slug.value);
