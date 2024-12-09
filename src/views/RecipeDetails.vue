@@ -219,10 +219,7 @@
                 v-for="related in relatedRecipes"
                 class="rounded-md shadow-lg"
               >
-                <RouterLink
-                  :to="`/recipe/${titleToSlug(related.name)}`"
-                  :key="related.id"
-                >
+                <RouterLink :to="`/recipe/${related.id}}`" :key="related.id">
                   <div class="image__wrapper">
                     <img
                       class="w-full h-[150px] rounded-t-md"
@@ -271,31 +268,25 @@ export default {
     const loading = ref(true);
 
     const fetchData = async (slug) => {
-      const query = slugToTitle(slug);
-
-      const response = await fetch(
-        `https://dummyjson.com/recipes/search?q=${query}`
-      );
+      const response = await fetch(`https://dummyjson.com/recipes/${slug}`);
 
       const result = await response.json();
       console.log(result);
-      recipes.value = result.recipes;
+      recipes.value = result;
 
-      const tags = recipes.value.tags;
+      const tags = recipes.value[0].tags[0];
 
-      const mealType = recipes.value.mealType;
+      const mealType = recipes.value[0].mealType[0];
 
       const recommend = await fetch(
         `https://dummyjson.com/recipes/meal-type/${mealType}`
       );
-
       const recommendData = await recommend.json();
-
       recommendRecipes.value = recommendData.recipes.slice(0, 6);
 
       const related = await fetch(`https://dummyjson.com/recipes/tag/${tags}`);
       const relatedData = await related.json();
-      relatedRecipes.value = relatedData.recipes.slice(0, 3);
+      relatedRecipes.value = relatedData.recipes;
     };
 
     onMounted(() => {
