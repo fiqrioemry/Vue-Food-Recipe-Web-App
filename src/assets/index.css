@@ -85,4 +85,8 @@ body {
   .image__animate {
     @apply hover:scale-110 duration-300 transition-all;
   }
+
+  .animate__loading {
+    @apply rounded-md bg-slate-200 animate-pulse;
+  }
 }

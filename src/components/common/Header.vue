@@ -1,5 +1,5 @@
 <template>
-  <header class="py-2 bg-background">
+  <header class="py-4 bg-background">
     <div class="header__wrapper">
       <div>
         <h5>FLA<span class="text-accent">VORIZ</span></h5>

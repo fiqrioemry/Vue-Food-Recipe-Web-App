@@ -1,12 +1,16 @@
 <template>
   <main>
+    <!-- loading when fetching process -->
+    <RecipeDetailsSkeleton v-if="loading" />
+    <!-- show when fetching done -->
     <section
+      v-else
       v-for="recipe in recipes"
       class="section__wrapper"
       :key="recipe.id"
     >
       <!-- page navigation-->
-      <div>home / recipe / sate-padang-enak</div>
+      <div>home / recipe / {{ recipe.name.toLowerCase() }}</div>
 
       <!-- content head -->
       <div>
@@ -138,13 +142,15 @@
           <div class="space-y-6 py-6">
             <h4>You might also like</h4>
 
-            <div v-if="loading">Loading...</div>
-            <div v-else="!loading" class="grid grid-cols-3 gap-x-4 gap-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
               <article
                 v-for="recommend in recommendRecipes"
                 class="rounded-md shadow-lg"
               >
-                <RouterLink :to="`/recipe`" :key="related.id">
+                <router-link
+                  :to="`/recipe/${recommend.name}`"
+                  :key="recommend.id"
+                >
                   <div class="image__wrapper relative">
                     <button
                       class="absolute right-2 top-2 bg-background px-4 py-2 rounded-md"
@@ -160,7 +166,6 @@
                       alt="favorite"
                     />
                   </div>
-
                   <div class="px-2 py-2 min-h-[75px]">
                     <div>
                       <font-awesome-icon
@@ -174,7 +179,7 @@
                       {{ recommend.name }}
                     </div>
                   </div>
-                </RouterLink>
+                </router-link>
               </article>
             </div>
           </div>
@@ -214,34 +219,6 @@
               >
             </form>
           </div>
-
-          <!-- related recipe -->
-          <div>
-            <h5>Related Recipes</h5>
-            <div v-if="loading">Loading...</div>
-            <div v-else="!loading" class="grid grid-cols-2 gap-x-3 gap-y-3">
-              <article
-                v-for="related in relatedRecipes"
-                class="rounded-md shadow-lg"
-              >
-                <RouterLink :to="`/recipe/${related.name}`" :key="related.id">
-                  <div class="image__wrapper">
-                    <img
-                      class="w-full h-[150px] rounded-t-md"
-                      :src="related.image"
-                      alt="favorite"
-                    />
-                  </div>
-
-                  <div class="px-2 py-2">
-                    <div class="text-xs md:text-sm">
-                      {{ related.name }}
-                    </div>
-                  </div>
-                </RouterLink>
-              </article>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -249,61 +226,66 @@
 </template>
 
 <script>
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { nutrisionFact, recipeDetail } from "@/config";
-import { slugToTitle } from "@/lib/utils";
-import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
+import { ref, onMounted, watch } from "vue";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { nutrisionFact, recipeDetail } from "@/config";
+import RecipeDetailsSkeleton from "@/components/skeleton/RecipeDetailsSkeleton.vue";
 
 export default {
   components: {
-    Button,
     Input,
+    Button,
+    RecipeDetailsSkeleton,
   },
   setup() {
     const recipes = ref([]);
     const route = useRoute();
     const loading = ref(true);
-    const relatedRecipes = ref([]);
     const recommendRecipes = ref([]);
     const slug = ref(route.params.slug);
     const recipeDetailData = recipeDetail;
     const nutrisionFactData = nutrisionFact;
 
     const fetchData = async (slug) => {
-      const response = await fetch(
-        `https://dummyjson.com/recipes/search?q=${slug}`
-      );
+      // recipe detail
+      const response = await fetch(`https://dummyjson.com/recipes?limit=100`);
       const result = await response.json();
-      recipes.value = result.recipes;
+      const data = result.recipes;
+      recipes.value = data.filter((item) => item.name === slug);
 
-      const tags = recipes.value[0].tags[0];
+      // recommend recipe
       const mealType = recipes.value[0].mealType[0];
-
       const recommend = await fetch(
         `https://dummyjson.com/recipes/meal-type/${mealType}`
       );
       const recommendData = await recommend.json();
-      recommendRecipes.value = recommendData.recipes.slice(0, 6);
-
-      const related = await fetch(`https://dummyjson.com/recipes/tag/${tags}`);
-      const relatedData = await related.json();
-      relatedRecipes.value = relatedData.recipes;
+      recommendRecipes.value = recommendData.recipes
+        .filter((item) => item.id !== recipes.value[0].id)
+        .slice(0, 3);
       loading.value = false;
-      console.log(loading.value);
     };
-    watch(() => route.params.slug, fetchData(slug.value));
 
     onMounted(() => {
-      fetchData(slug.value);
+      setTimeout(() => {
+        fetchData(slug.value);
+      }, 500);
     });
+
+    watch(
+      () => route.params.slug,
+      (newSlug) => {
+        slug.value = newSlug;
+        loading.value = true;
+        fetchData(newSlug);
+      }
+    );
 
     return {
       slug,
       nutrisionFact: nutrisionFactData,
       recipeDetail: recipeDetailData,
-      relatedRecipes,
       recommendRecipes,
       recipes,
       loading,
