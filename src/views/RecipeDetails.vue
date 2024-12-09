@@ -271,33 +271,31 @@ export default {
     const loading = ref(true);
 
     const fetchData = async (slug) => {
-      try {
-        const query = slugToTitle("classic-margherita-pizza");
-        const response = await fetch(`https://dummyjson.com/recipes`);
-        const result = await response.json();
+      const query = slugToTitle(slug);
 
-        const filteredData = result.recipes.filter(
-          (item) => item.name === query
-        );
-        if (filteredData.length) {
-          const related = result.recipes.filter((item) =>
-            item.mealType.includes(filteredData[0].mealType[0])
-          );
-          const recommended = result.recipes.filter(
-            (item) => item.reviewCount > 90
-          );
+      const response = await fetch(
+        `https://dummyjson.com/recipes/search?q=${query}`
+      );
 
-          relatedRecipes.value = related.slice(0, 6);
-          recommendRecipes.value = recommended.slice(0, 3);
-          recipes.value = filteredData;
-        } else {
-          console.error("No recipes found for the given slug.");
-        }
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      } finally {
-        loading.value = false;
-      }
+      const result = await response.json();
+      console.log(result);
+      recipes.value = result.recipes;
+
+      const tags = recipes.value.tags;
+
+      const mealType = recipes.value.mealType;
+
+      const recommend = await fetch(
+        `https://dummyjson.com/recipes/meal-type/${mealType}`
+      );
+
+      const recommendData = await recommend.json();
+
+      recommendRecipes.value = recommendData.recipes.slice(0, 6);
+
+      const related = await fetch(`https://dummyjson.com/recipes/tag/${tags}`);
+      const relatedData = await related.json();
+      relatedRecipes.value = relatedData.recipes.slice(0, 3);
     };
 
     onMounted(() => {
