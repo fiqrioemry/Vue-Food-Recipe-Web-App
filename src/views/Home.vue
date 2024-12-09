@@ -1,6 +1,7 @@
 <template>
   <main class="container mx-auto py-6">
-    <HomeSkeleton v-if="loading" />
+    <HomePageSkeleton v-if="loading" />
+
     <div v-else>
       <!-- hero section -->
       <HeroSection />
@@ -20,16 +21,16 @@
 <script>
 import HeroSection from "../components/home/HeroSection.vue";
 import ShareRecipe from "../components/home/ShareRecipe.vue";
-import TrendingRecipe from "../components/home/TrendingRecipe.vue";
 import BlogSection from "../components/home/BlogSection.vue";
-import HomeSkeleton from "@/components/skeleton/HomeSkeleton.vue";
+import TrendingRecipe from "../components/home/TrendingRecipe.vue";
+import HomePageSkeleton from "@/components/skeleton/HomePageSkeleton.vue";
 
 export default {
   components: {
     HeroSection,
     BlogSection,
     ShareRecipe,
-    HomeSkeleton,
+    HomePageSkeleton,
     TrendingRecipe,
   },
   data() {

@@ -1,7 +1,7 @@
 <template>
   <main>
     <!-- loading when fetching process -->
-    <RecipeDetailsSkeleton v-if="loading" />
+    <RecipeDetailPageSkeleton v-if="loading" />
     <!-- show when fetching done -->
     <section
       v-else
@@ -231,13 +231,13 @@ import { ref, onMounted, watch } from "vue";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { nutrisionFact, recipeDetail } from "@/config";
-import RecipeDetailsSkeleton from "@/components/skeleton/RecipeDetailsSkeleton.vue";
+import RecipeDetailPageSkeleton from "@/components/skeleton/RecipeDetailPageSkeleton.vue";
 
 export default {
   components: {
     Input,
     Button,
-    RecipeDetailsSkeleton,
+    RecipeDetailPageSkeleton,
   },
   setup() {
     const recipes = ref([]);

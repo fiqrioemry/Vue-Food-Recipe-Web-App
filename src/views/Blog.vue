@@ -1,5 +1,6 @@
 <template>
-  <section class="bg-foreground py-6">
+  <BlogPageSkeleton v-if="loading" />
+  <section v-else class="bg-foreground py-6">
     <div class="container mx-auto">
       <div>home / blog</div>
       <div class="space-y-6">
@@ -42,12 +43,8 @@
 
         <!-- blog display -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12">
-          <!-- blog card skeleton -->
-          <BlogCardSkeleton v-if="loading" v-for="i in 2" :key="i" />
-
           <!-- blog card -->
           <div
-            v-else="!loading"
             v-for="blog in data"
             :key="blog.id"
             class="shadow-lg bg-background rounded-md"
@@ -84,19 +81,19 @@
 import BlogData from "@/config/blog.json";
 import { Button } from "@/components/ui/button";
 import BlogPagination from "@/components/blog/BlogPagination.vue";
-import BlogCardSkeleton from "@/components/skeleton/BlogCardSkeleton.vue";
+import BlogPageSkeleton from "@/components/skeleton/BlogPageSkeleton.vue";
 
 export default {
   components: {
     Button,
-    BlogCardSkeleton,
     BlogPagination,
+    BlogPageSkeleton,
   },
   data() {
     return {
       data: [],
-      loading: true,
       BlogData,
+      loading: true,
       totalPages: 0,
       firstIndex: 0,
       lastIndex: 0,
@@ -119,6 +116,7 @@ export default {
       this.currentPage = page;
       this.loading = true;
       this.fetchAllBlog();
+      window.scrollTo(0, 0);
     },
   },
   mounted() {

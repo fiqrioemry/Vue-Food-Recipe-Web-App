@@ -10,12 +10,8 @@
 
     <div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-        <!-- blog card loading ui -->
-        <BlogCard v-if="loading" v-for="i in 2" :key="i" />
-
         <!-- blog card content display -->
         <article
-          v-else
           v-for="article in filteredArticles"
           class="rounded-lg shadow-lg"
         >
@@ -50,12 +46,8 @@
 
 <script>
 import articles from "@/config/blog.json";
-import BlogCard from "../skeleton/BlogCardSkeleton.vue";
 
 export default {
-  components: {
-    BlogCard,
-  },
   data() {
     return {
       articles,

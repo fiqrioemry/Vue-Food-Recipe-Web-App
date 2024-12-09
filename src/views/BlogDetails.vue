@@ -1,6 +1,6 @@
 <template>
-  <BlogDetailsSkeleton v-if="loading" />
-  <section v-else="!loading" v-for="blog in data" class="section__wrapper">
+  <BlogDetailPageSkeleton v-if="loading" />
+  <section v-else v-for="blog in data" class="section__wrapper">
     <!-- Page Navigation -->
     <div>home / blog / {{ blog.title }}</div>
 
@@ -93,13 +93,13 @@
 <script>
 import articles from "@/config/blog.json";
 import { blogInfoSummary } from "@/config";
-import BlogDetailsSkeleton from "@/components/skeleton/BlogDetailsSkeleton.vue";
+import BlogDetailPageSkeleton from "@/components/skeleton/BlogDetailPageSkeleton.vue";
 
 export default {
   name: "BlogDetails",
   props: ["slug"],
   components: {
-    BlogDetailsSkeleton,
+    BlogDetailPageSkeleton,
   },
   data() {
     return {

@@ -4,7 +4,9 @@
     <div class="flex items-center justify-between">
       <h4>Trending Recipe</h4>
 
-      <button class="text-accent font-semibold">View more</button>
+      <button class="text-accent font-semibold">
+        <router-link to="/recipe">View more</router-link>
+      </button>
     </div>
 
     <div>
