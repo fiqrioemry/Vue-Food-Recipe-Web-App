@@ -154,17 +154,17 @@ export const signUpInputForm = [
   {
     type: "text",
     value: "",
-    placeholder: "input your username",
-  },
-  {
-    type: "text",
-    value: "",
     placeholder: "input your email",
   },
   {
     type: "password",
     value: "",
     placeholder: "input your password",
+  },
+  {
+    type: "text",
+    value: "",
+    placeholder: "input your email",
   },
   {
     type: "password",
