@@ -12,7 +12,7 @@
         <div class="p-4 rounded-md bg-background shadow-lg">
           <div
             v-if="BlogData.length > 0"
-            class="grid grid-cols-1 md:grid-cols-2"
+            class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6"
           >
             <div class="order-2 md:order-1 text-secondary space-y-4">
               <span>{{ BlogData[0].datePublished }}</span>

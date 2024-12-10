@@ -1,6 +1,5 @@
 import Blog from "@/views/Blog.vue";
 import Home from "@/views/Home.vue";
-import About from "@/views/About.vue";
 import Recipe from "@/views/Recipe.vue";
 import BlogDetails from "@/views/BlogDetails.vue";
 import RecipeDetails from "@/views/RecipeDetails.vue";
@@ -20,11 +19,6 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
-      },
-      {
-        path: "/about",
-        name: "about",
-        component: About,
       },
       {
         path: "/recipe",

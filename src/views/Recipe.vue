@@ -71,19 +71,27 @@
             :value="category"
             class="space-y-6"
           >
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
-              <article v-for="(recipe, index) in recipes" :key="index">
-                <div class="image__wrapper">
-                  <img :src="recipe.image" alt="image_recipes" />
-                </div>
-              </article>
+            <div
+              v-if="tabsLoading"
+              class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4 py-6"
+            >
+              <div v-for="i in 4" :key="i" class="animate__loading h-[300px]" />
             </div>
-            <!-- Pagination -->
-            <BlogPagination
-              :currentPage="currentPage"
-              :totalPages="totalPages"
-              :onPageChanged="onPageChanged"
-            />
+            <div v-else class="space-y-6 py-6">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
+                <article v-for="(recipe, index) in recipes" :key="index">
+                  <div class="image__wrapper">
+                    <img :src="recipe.image" alt="image_recipes" />
+                  </div>
+                </article>
+              </div>
+              <!-- Pagination -->
+              <BlogPagination
+                :currentPage="currentPage"
+                :totalPages="totalPages"
+                :onPageChanged="onPageChanged"
+              />
+            </div>
           </TabsContent>
         </Tabs>
       </div>
