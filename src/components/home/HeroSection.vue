@@ -1,13 +1,3 @@
-<script>
-import { Button } from "../ui/button";
-
-export default {
-  components: {
-    Button,
-  },
-};
-</script>
-
 <template>
   <section class="section__wrapper">
     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -16,11 +6,12 @@ export default {
           Your Daily Dish A <span class="text-accent">Food</span> Journey
         </h1>
         <p class="text-secondary">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
-          dicta necessitatibus atque eum, ducimus amet culpa nihil distinctio,
-          porro cum adipisci quam sequi quia.
+          Discover the joy of delicious meals, crafted to bring comfort, flavor,
+          and excitement to your table.
         </p>
-        <Button size="lg">Explore Recipe</Button>
+        <Button size="lg"
+          ><router-link to="/recipe"> Explore Recipe </router-link></Button
+        >
       </div>
       <div class="hidden md:flex flex-col">
         <div class="py-6 space-y-6 pt-[75px]">
@@ -36,3 +27,13 @@ export default {
     </div>
   </section>
 </template>
+
+<script>
+import { Button } from "../ui/button";
+
+export default {
+  components: {
+    Button,
+  },
+};
+</script>

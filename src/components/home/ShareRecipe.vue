@@ -18,11 +18,13 @@ export default {
       <div class="space-y-6 text-center">
         <h2>Share your recipes</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
-          modi fuga optio quod aperiam minima nulla sunt quae aut eum similique
-          laborum dignissimos nam amet repudiandae, ea consequatur, natus iste.
+          Have a dish you love? Share your culinary creations with the world and
+          inspire others to bring new flavors to their kitchen. Let your recipe
+          tell its story.
         </p>
-        <Button size="lg">Create new recipe</Button>
+        <Button size="lg"
+          ><router-link to="/signin">Create new recipe</router-link></Button
+        >
       </div>
     </div>
   </section>

@@ -14,11 +14,11 @@ body {
   :root {
     --background: #ffffff;
     --foreground: #ebebeb;
-    --button: #974e44;
+    --button: #212121;
     --button-disabled: #a5a5a5;
     --primary: #000000;
     --secondary: #878787;
-    --accent: #b55d51;
+    --accent: #ffa31a;
     --accent-muted: #fff0ed;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;

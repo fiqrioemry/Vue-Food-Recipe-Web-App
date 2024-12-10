@@ -18,9 +18,10 @@ export default {
         >
           <h4>FLA<span class="text-accent">VORIZ</span></h4>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae
-            possimus sapiente aut sed provident tenetur tempora beatae,
-            reiciendis quos libero dicta sint hic voluptas quas.
+            Indulge in a culinary experience like no other. Explore a diverse
+            range of recipes, each designed to bring joy and flavor to your
+            table. From comforting classics to bold new flavors, we’ve got
+            something for every taste
           </p>
         </div>
         <div class="col-span-4"></div>
