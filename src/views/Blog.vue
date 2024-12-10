@@ -29,6 +29,7 @@
                 ></Button
               >
             </div>
+
             <div class="order-1 md:order-2">
               <div class="image__wrapper">
                 <img
@@ -67,7 +68,7 @@
         </div>
 
         <!-- Pagination -->
-        <BlogPagination
+        <Pagination
           :currentPage="currentPage"
           :totalPages="totalPages"
           :onPageChanged="onPageChanged"
@@ -80,13 +81,13 @@
 <script>
 import BlogData from "@/config/blog.json";
 import { Button } from "@/components/ui/button";
-import BlogPagination from "@/components/blog/BlogPagination.vue";
+import Pagination from "@/components/common/Pagination.vue";
 import BlogPageSkeleton from "@/components/skeleton/BlogPageSkeleton.vue";
 
 export default {
   components: {
     Button,
-    BlogPagination,
+    Pagination,
     BlogPageSkeleton,
   },
   data() {

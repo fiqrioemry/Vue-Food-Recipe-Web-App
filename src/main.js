@@ -26,6 +26,7 @@ import {
   faGlobe,
   faUser,
   faBowlFood,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -41,7 +42,8 @@ library.add(
   faClock,
   faGlobe,
   faUser,
-  faBowlFood
+  faBowlFood,
+  faBars
 );
 
 const vuetify = createVuetify({

@@ -13,11 +13,12 @@
 </template>
 <script>
 import { navLinks } from "../../config/index.js";
-
+import { SheetClose } from "@/components/ui/sheet";
 export default {
-  data() {
+  setup() {
+    const links = navLinks;
     return {
-      links: navLinks,
+      links,
     };
   },
 };

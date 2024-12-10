@@ -58,7 +58,7 @@
                 </article>
               </div>
               <!-- Pagination -->
-              <BlogPagination
+              <Pagination
                 :currentPage="currentPage"
                 :totalPages="totalPages"
                 :onPageChanged="onPageChanged"
@@ -86,7 +86,7 @@
                 </article>
               </div>
               <!-- Pagination -->
-              <BlogPagination
+              <Pagination
                 :currentPage="currentPage"
                 :totalPages="totalPages"
                 :onPageChanged="onPageChanged"
@@ -101,81 +101,63 @@
 
 <script>
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import BlogPagination from "@/components/blog/BlogPagination.vue";
+import Pagination from "@/components/common/Pagination.vue";
+
 export default {
   components: {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
-    BlogPagination,
+    Pagination,
   },
   data() {
     return {
-      loading: true,
       categories: [],
       recipes: [],
-      mealType: "",
+      mealType: "all",
       totalPages: 0,
-      firstIndex: 0,
-      lastIndex: 0,
-      dataPerPage: 4,
       currentPage: 1,
+      dataPerPage: 4,
       tabsLoading: true,
     };
   },
   methods: {
-    async fetchAllMealType() {
+    async fetchRecipes(url) {
       try {
-        const response = await fetch("https://dummyjson.com/recipes?limit=100");
+        const response = await fetch(url);
         const { recipes } = await response.json();
-
-        const mealType = [...new Set(recipes.flatMap((item) => item.mealType))];
-        this.categories = mealType;
-
-        this.handleTabClick("all");
+        return recipes;
       } catch (error) {
-        console.error("Error fetching meal types:", error);
+        console.error("Error fetching recipes:", error);
+        return [];
       }
     },
-
+    async fetchAllMealType() {
+      const recipes = await this.fetchRecipes(
+        "https://dummyjson.com/recipes?limit=100"
+      );
+      this.categories = [...new Set(recipes.flatMap((item) => item.mealType))];
+      this.handleTabClick("all");
+    },
     async fetchByMealType(mealType) {
-      try {
-        if (mealType === "all") {
-          this.mealType = mealType;
-          const response = await fetch(
-            "https://dummyjson.com/recipes?limit=100"
-          );
-          const { recipes } = await response.json();
-          this.totalPages = Math.ceil(recipes.length / this.dataPerPage);
-          this.firstIndex = (this.currentPage - 1) * this.dataPerPage;
-          this.lastIndex = this.firstIndex + this.dataPerPage;
-          this.recipes = recipes.slice(this.firstIndex, this.lastIndex);
-        } else {
-          const response = await fetch(
-            `https://dummyjson.com/recipes/meal-type/${mealType}`
-          );
-          const { recipes } = await response.json();
-          this.totalPages = Math.ceil(recipes.length / this.dataPerPage);
-          this.firstIndex = (this.currentPage - 1) * this.dataPerPage;
-          this.lastIndex = this.firstIndex + this.dataPerPage;
-          this.recipes = recipes.slice(this.firstIndex, this.lastIndex);
-          this.mealType = mealType;
-        }
-        this.tabsLoading = false;
-      } catch (error) {
-        console.error("Error fetching recipes by meal type:", error);
-      }
-    },
+      const url =
+        mealType === "all"
+          ? "https://dummyjson.com/recipes?limit=100"
+          : `https://dummyjson.com/recipes/meal-type/${mealType}`;
+      const recipes = await this.fetchRecipes(url);
 
+      this.totalPages = Math.ceil(recipes.length / this.dataPerPage);
+      const start = (this.currentPage - 1) * this.dataPerPage;
+      this.recipes = recipes.slice(start, start + this.dataPerPage);
+      this.tabsLoading = false;
+    },
     handleTabClick(selectedMealType) {
       this.tabsLoading = true;
       this.currentPage = 1;
       this.fetchByMealType(selectedMealType);
     },
-
     onPageChanged(page) {
-      this.tabsLoading = true;
       this.currentPage = page;
       this.fetchByMealType(this.mealType);
     },

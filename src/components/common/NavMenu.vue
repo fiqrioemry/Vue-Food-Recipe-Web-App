@@ -1,6 +1,8 @@
 <template>
   <Sheet>
-    <SheetTrigger><Button>Open</Button></SheetTrigger>
+    <SheetTrigger>
+      <font-awesome-icon class="text-2xl" icon="fa-solid fa-bars"
+    /></SheetTrigger>
     <SheetContent>
       <ul
         class="flex md:flex-row flex-col items-center justify-between py-12 gap-y-10 font-medium"

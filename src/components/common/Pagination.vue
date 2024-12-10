@@ -1,5 +1,5 @@
 <template>
-  <div class="space-x-2">
+  <div class="space-x-2 space-y-2">
     <button
       v-for="page in totalPages"
       :key="page"

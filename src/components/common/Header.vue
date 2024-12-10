@@ -1,5 +1,7 @@
 <template>
-  <header class="py-4 bg-background">
+  <header
+    class="py-4 bg-background fixed top-0 left-0 right-0 z-10 border-b-2 border-accent"
+  >
     <div class="header__wrapper">
       <div>
         <h5>FLA<span class="text-accent">VORIZ</span></h5>
@@ -7,15 +9,14 @@
       <nav class="hidden md:block">
         <NavLink />
       </nav>
+      <!-- nav menu (mobile) -->
       <div class="flex md:hidden"><NavMenu /></div>
+
+      <!-- nav button -->
       <div class="hidden md:flex space-x-2">
-        <div>
-          <font-awesome-icon icon="fa-solid fa-house" />
-        </div>
-        <Button variant="secondary">
+        <Button>
           <router-link to="/signin">Login</router-link>
         </Button>
-
         <Button><router-link to="/signup">Signup</router-link></Button>
       </div>
     </div>
@@ -23,29 +24,29 @@
 </template>
 
 <script>
-import { Button } from "@/components/ui/button";
 import NavMenu from "./NavMenu.vue";
 import NavLink from "./NavLink.vue";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetTitle,
+  SheetHeader,
+  SheetTrigger,
   SheetContent,
   SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 
 export default {
   components: {
-    Button,
     Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
+    Button,
     NavMenu,
     NavLink,
+    SheetTitle,
+    SheetHeader,
+    SheetTrigger,
+    SheetContent,
+    SheetDescription,
   },
 };
 </script>

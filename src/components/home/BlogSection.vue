@@ -31,7 +31,7 @@
               <h5 class="text-center">
                 {{ article.title }}
               </h5>
-              <p class="text-secondary text-justify">
+              <p class="text-justify">
                 {{ article.excerpt }}
               </p>
             </div>

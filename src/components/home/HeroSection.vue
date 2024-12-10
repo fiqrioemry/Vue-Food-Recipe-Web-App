@@ -5,7 +5,7 @@
         <h1 class="leading-[4rem]">
           Your Daily Dish A <span class="text-accent">Food</span> Journey
         </h1>
-        <p class="text-secondary">
+        <p>
           Discover the joy of delicious meals, crafted to bring comfort, flavor,
           and excitement to your table.
         </p>

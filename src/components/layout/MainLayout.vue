@@ -1,7 +1,7 @@
 <template>
   <main>
     <Header />
-    <div>
+    <div class="mt-14">
       <router-view />
     </div>
     <Footer />
