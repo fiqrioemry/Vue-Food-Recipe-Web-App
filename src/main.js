@@ -2,6 +2,14 @@ import { createApp } from "vue";
 import "./assets/index.css";
 import App from "./App.vue";
 import router from "./router";
+
+// Vuetify
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+
+// font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -36,5 +44,13 @@ library.add(
   faBowlFood
 );
 
+const vuetify = createVuetify({
+  components,
+  directives,
+});
 const app = createApp(App);
-app.use(router).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+app
+  .use(router)
+  .use(vuetify)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app");

@@ -24,6 +24,7 @@ import ShareRecipe from "../components/home/ShareRecipe.vue";
 import BlogSection from "../components/home/BlogSection.vue";
 import TrendingRecipe from "../components/home/TrendingRecipe.vue";
 import HomePageSkeleton from "@/components/skeleton/HomePageSkeleton.vue";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default {
   components: {
@@ -32,6 +33,10 @@ export default {
     ShareRecipe,
     HomePageSkeleton,
     TrendingRecipe,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
   },
   data() {
     return {
