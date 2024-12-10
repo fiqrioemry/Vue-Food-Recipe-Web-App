@@ -18,11 +18,13 @@
         <h2>What to <span class="text-accent">Cook</span>?</h2>
 
         <Tabs :default-value="'all'">
-          <TabsList class="flex flex-wrap gap-x-4 gap-y-4">
+          <TabsList
+            class="flex flex-wrap gap-x-2 gap-y-2 md:gap-y-4 md:gap-x-4"
+          >
             <!-- All Categories Tab -->
             <TabsTrigger
               value="all"
-              class="rounded-full px-6"
+              class="rounded-full px-4 md:px-6"
               @click="handleTabClick('all')"
             >
               All Categories
@@ -32,27 +34,36 @@
               v-for="(category, index) in categories"
               :key="index"
               :value="category"
-              class="rounded-full px-6"
+              class="rounded-full px-4 md:px-6"
               @click="handleTabClick(category)"
             >
               {{ category }}
             </TabsTrigger>
           </TabsList>
           <!-- Dynamic Categories Content -->
-          <TabsContent value="all" class="space-y-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
-              <article v-for="(recipe, index) in recipes" :key="index">
-                <div class="image__wrapper">
-                  <img :src="recipe.image" alt="image_recipes" />
-                </div>
-              </article>
+          <TabsContent value="all">
+            <div
+              v-if="tabsLoading"
+              class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4 py-6"
+            >
+              <div v-for="i in 4" :key="i" class="animate__loading h-[300px]" />
             </div>
-            <!-- Pagination -->
-            <BlogPagination
-              :currentPage="currentPage"
-              :totalPages="totalPages"
-              :onPageChanged="onPageChanged"
-            />
+
+            <div v-else class="space-y-6 py-6">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
+                <article v-for="(recipe, index) in recipes" :key="index">
+                  <div class="image__wrapper">
+                    <img :src="recipe.image" alt="image_recipes" />
+                  </div>
+                </article>
+              </div>
+              <!-- Pagination -->
+              <BlogPagination
+                :currentPage="currentPage"
+                :totalPages="totalPages"
+                :onPageChanged="onPageChanged"
+              />
+            </div>
           </TabsContent>
           <TabsContent
             v-for="(category, index) in categories"
@@ -102,6 +113,7 @@ export default {
       lastIndex: 0,
       dataPerPage: 4,
       currentPage: 1,
+      tabsLoading: true,
     };
   },
   methods: {
@@ -142,16 +154,20 @@ export default {
           this.recipes = recipes.slice(this.firstIndex, this.lastIndex);
           this.mealType = mealType;
         }
+        this.tabsLoading = false;
       } catch (error) {
         console.error("Error fetching recipes by meal type:", error);
       }
     },
 
     handleTabClick(selectedMealType) {
+      this.tabsLoading = true;
+      this.currentPage = 1;
       this.fetchByMealType(selectedMealType);
     },
 
     onPageChanged(page) {
+      this.tabsLoading = true;
       this.currentPage = page;
       this.fetchByMealType(this.mealType);
     },
