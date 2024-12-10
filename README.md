@@ -22,7 +22,7 @@ Follow these steps to get the project up and running on your local machine:
 1. Clone this repository:
    ```bash
    git clone https://github.com/fiqrioemry/vue_food_recipe_web_app.git
-   cd Frontend_eccomerce_web_app
+   cd vue_food_recipe_web_app
 
 2. Install dependencies:
    ```bash
