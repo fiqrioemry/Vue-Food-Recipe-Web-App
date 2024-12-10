@@ -143,44 +143,7 @@
             <h4>You might also like</h4>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
-              <article
-                v-for="recommend in recommendRecipes"
-                class="rounded-md shadow-lg"
-              >
-                <router-link
-                  :to="`/recipe/${recommend.name}`"
-                  :key="recommend.id"
-                >
-                  <div class="image__wrapper relative">
-                    <button
-                      class="absolute right-2 top-2 bg-background px-4 py-2 rounded-md"
-                    >
-                      <font-awesome-icon
-                        class="text-accent text-xs"
-                        icon="fa-solid fa-bookmark"
-                      />
-                    </button>
-                    <img
-                      class="w-full h-[200px] rounded-t-md"
-                      :src="recommend.image"
-                      alt="favorite"
-                    />
-                  </div>
-                  <div class="px-2 py-2 min-h-[75px]">
-                    <div>
-                      <font-awesome-icon
-                        v-for="i in 5"
-                        class="text-accent text-xs"
-                        icon="fa-solid fa-star"
-                        :key="i"
-                      />
-                    </div>
-                    <div class="text-xs md:text-sm">
-                      {{ recommend.name }}
-                    </div>
-                  </div>
-                </router-link>
-              </article>
+              <RecipeCard :recipes="recommendRecipes" />
             </div>
           </div>
         </div>
@@ -192,12 +155,12 @@
         <div class="hidden md:block md:col-span-3 space-y-6">
           <!-- nutrision fact -->
           <div
-            class="py-6 px-6 max-h-[400px] w-full bg-foreground text-secondary rounded-sm space-y-2"
+            class="py-6 px-6 max-h-[400px] w-full bg-foreground rounded-sm space-y-2"
           >
             <h4>Nutrision fact</h4>
             <div
               v-for="nutrision in nutrisionFact"
-              class="flex items-center justify-between border-b border-secondary"
+              class="flex items-center justify-between border-b"
             >
               <div>{{ nutrision.title }}</div>
               <div>{{ nutrision.value }}</div>
@@ -205,20 +168,7 @@
           </div>
 
           <!-- stay connect  -->
-          <div class="bg-accent-muted space-y-6 p-6 rounded-sm text-center">
-            <h4 class="leading-[2rem]">Stay connected with our updates</h4>
-            <p>for the lastest health tips and delicious recipes</p>
-
-            <form class="space-y-4" action="submit">
-              <Input
-                class="w-full rounded-md h-12"
-                placeholder="Enter you email"
-              />
-              <Button size="lg" class="w-full"
-                ><RouterLink to="/signup">Signup</RouterLink></Button
-              >
-            </form>
-          </div>
+          <AsideStayConnect />
         </div>
       </div>
     </section>
@@ -231,13 +181,17 @@ import { ref, onMounted, watch } from "vue";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { nutrisionFact, recipeDetail } from "@/config";
+import RecipeCard from "@/components/common/RecipeCard.vue";
 import RecipeDetailPageSkeleton from "@/components/skeleton/RecipeDetailPageSkeleton.vue";
+import AsideStayConnect from "@/components/common/AsideStayConnect.vue";
 
 export default {
   components: {
     Input,
     Button,
+    RecipeCard,
     RecipeDetailPageSkeleton,
+    AsideStayConnect,
   },
   setup() {
     const recipes = ref([]);

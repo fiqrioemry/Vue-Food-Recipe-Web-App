@@ -9,8 +9,8 @@
           Discover the joy of delicious meals, crafted to bring comfort, flavor,
           and excitement to your table.
         </p>
-        <Button size="lg"
-          ><router-link to="/recipe"> Explore Recipe </router-link></Button
+        <router-link to="/recipe">
+          <Button size="lg"> Explore Recipe</Button></router-link
         >
       </div>
       <div class="hidden md:flex flex-col">

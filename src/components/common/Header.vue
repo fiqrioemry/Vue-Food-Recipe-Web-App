@@ -14,10 +14,10 @@
 
       <!-- nav button -->
       <div class="hidden md:flex space-x-2">
-        <Button>
-          <router-link to="/signin">Login</router-link>
-        </Button>
-        <Button><router-link to="/signup">Signup</router-link></Button>
+        <router-link to="/signin">
+          <Button> Login </Button>
+        </router-link>
+        <router-link to="/signup"> <Button>Signup</Button></router-link>
       </div>
     </div>
   </header>
@@ -27,26 +27,12 @@
 import NavMenu from "./NavMenu.vue";
 import NavLink from "./NavLink.vue";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetTitle,
-  SheetHeader,
-  SheetTrigger,
-  SheetContent,
-  SheetDescription,
-} from "@/components/ui/sheet";
 
 export default {
   components: {
-    Sheet,
     Button,
     NavMenu,
     NavLink,
-    SheetTitle,
-    SheetHeader,
-    SheetTrigger,
-    SheetContent,
-    SheetDescription,
   },
 };
 </script>

@@ -51,11 +51,7 @@
 
             <div v-else class="space-y-6 py-6">
               <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
-                <article v-for="(recipe, index) in recipes" :key="index">
-                  <div class="image__wrapper">
-                    <img :src="recipe.image" alt="image_recipes" />
-                  </div>
-                </article>
+                <RecipeCard :recipes="recipes" />
               </div>
               <!-- Pagination -->
               <Pagination
@@ -79,11 +75,7 @@
             </div>
             <div v-else class="space-y-6 py-6">
               <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
-                <article v-for="(recipe, index) in recipes" :key="index">
-                  <div class="image__wrapper">
-                    <img :src="recipe.image" alt="image_recipes" />
-                  </div>
-                </article>
+                <RecipeCard :recipes="recipes" />
               </div>
               <!-- Pagination -->
               <Pagination
@@ -102,6 +94,7 @@
 <script>
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Pagination from "@/components/common/Pagination.vue";
+import RecipeCard from "@/components/common/RecipeCard.vue";
 
 export default {
   components: {
@@ -110,6 +103,7 @@ export default {
     TabsList,
     TabsTrigger,
     Pagination,
+    RecipeCard,
   },
   data() {
     return {

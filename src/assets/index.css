@@ -55,7 +55,7 @@ body {
     @apply text-[48px] text-primary font-medium tracking-[1.5px];
   }
   h3 {
-    @apply text-[40px] text-primary font-medium tracking-[1.5px];
+    @apply text-[40px] text-primary font-medium tracking-[1.5px] leading-loose;
   }
   h4 {
     @apply text-[32px] text-primary font-medium tracking-[1.5px];
